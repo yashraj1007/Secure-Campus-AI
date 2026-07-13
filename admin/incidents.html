@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incident Management — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="Incident Management" data-breadcrumb="SOC / Incidents" data-topbar-extra='<button class="btn btn-danger btn-sm">+ New Incident</button>'>
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card stat-card--danger"><div class="stat-card__label">Open</div><div class="stat-card__value" style="color:var(--accent-red)">12</div></div>
+      <div class="stat-card stat-card--warning"><div class="stat-card__label">In Progress</div><div class="stat-card__value" style="color:var(--accent-orange)">8</div></div>
+      <div class="stat-card stat-card--success"><div class="stat-card__label">Resolved (30d)</div><div class="stat-card__value" style="color:var(--accent-green)">156</div></div>
+      <div class="stat-card"><div class="stat-card__label">Avg Resolution</div><div class="stat-card__value" style="color:var(--accent-blue)">4.2h</div></div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">📋 Active Incidents</span></div>
+        <div class="panel__body panel__body--flush">
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Title</th><th>Severity</th><th>Assignee</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">INC-0847</td><td>Ransomware — LAB-204</td><td><span class="badge badge-critical">Critical</span></td><td>S. Mitchell</td><td><span class="badge badge-warning">In Progress</span></td></tr>
+              <tr><td class="mono">INC-0846</td><td>Phishing Campaign — Faculty</td><td><span class="badge badge-danger">High</span></td><td>J. Lee</td><td><span class="badge badge-warning">In Progress</span></td></tr>
+              <tr><td class="mono">INC-0845</td><td>Brute Force — Admin Portal</td><td><span class="badge badge-critical">Critical</span></td><td>S. Mitchell</td><td><span class="badge badge-info">Investigating</span></td></tr>
+              <tr><td class="mono">INC-0844</td><td>Credential Stuffing</td><td><span class="badge badge-danger">High</span></td><td>M. Davis</td><td><span class="badge badge-safe">Resolved</span></td></tr>
+              <tr><td class="mono">INC-0843</td><td>Data Exfiltration Attempt</td><td><span class="badge badge-critical">Critical</span></td><td>J. Lee</td><td><span class="badge badge-warning">In Progress</span></td></tr>
+              <tr><td class="mono">INC-0842</td><td>Malware — LIB-PC-12</td><td><span class="badge badge-warning">Medium</span></td><td>M. Davis</td><td><span class="badge badge-safe">Resolved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">⏱️ Incident Timeline — INC-0847</span></div>
+        <div class="panel__body">
+          <div class="incident-timeline">
+            <div class="timeline-event timeline-event--critical">
+              <div class="timeline-event__time">14:32:08 UTC</div>
+              <div class="timeline-event__title">Ransomware Detected</div>
+              <div class="timeline-event__desc">Trojan.GenericKD identified on LAB-204 by endpoint protection.</div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-event__time">14:32:15 UTC</div>
+              <div class="timeline-event__title">Automated Response</div>
+              <div class="timeline-event__desc">Endpoint isolated from network. File quarantined.</div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-event__time">14:35:00 UTC</div>
+              <div class="timeline-event__title">Analyst Assigned</div>
+              <div class="timeline-event__desc">Sarah Mitchell assigned as incident lead.</div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-event__time">14:42:30 UTC</div>
+              <div class="timeline-event__title">Forensic Analysis Started</div>
+              <div class="timeline-event__desc">Memory dump and disk image captured for analysis.</div>
+            </div>
+            <div class="timeline-event timeline-event--resolved">
+              <div class="timeline-event__time">Pending</div>
+              <div class="timeline-event__title">Resolution</div>
+              <div class="timeline-event__desc">Awaiting forensic report and remediation plan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

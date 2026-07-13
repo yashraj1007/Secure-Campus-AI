@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threat Intelligence Map — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="Threat Intelligence Map" data-breadcrumb="SOC / Campus Threat Visualization" data-topbar-extra='<span class="badge badge-info">10 Active Markers</span>'>
+  <div data-page-content>
+    <div class="threat-map-container" id="threat-map"></div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/threat-map.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      const pageContent = document.querySelector('.page-content');
+      if (pageContent) pageContent.style.paddingBottom = '0';
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

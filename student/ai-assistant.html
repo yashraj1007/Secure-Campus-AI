@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="AI Security Assistant" data-breadcrumb="Student Portal / AI Assistant" data-topbar-extra='<span class="badge badge-safe">● Online</span>'>
+  <div data-page-content>
+    <div class="chat-layout">
+      <div class="chat-sidebar">
+        <div class="chat-sidebar__header"><i data-lucide="lightbulb" style="width:14px;height:14px"></i> Suggested Questions</div>
+        <div class="chat-suggestions">
+          <button class="chat-suggestion" data-question="Is this email safe?">Is this email safe?</button>
+          <button class="chat-suggestion" data-question="What is phishing?">What is phishing?</button>
+          <button class="chat-suggestion" data-question="How to avoid scams?">How to avoid scams?</button>
+          <button class="chat-suggestion" data-question="Is this website safe?">Is this website safe?</button>
+          <button class="chat-suggestion" data-question="What is MFA and why is it important?">What is MFA?</button>
+          <button class="chat-suggestion" data-question="How do I protect against malware?">Malware protection tips</button>
+        </div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" class="form-input" placeholder="Ask a security question..." autocomplete="off">
+          <button id="chat-send" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/ai-assistant.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

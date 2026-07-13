@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOC Overview — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="SOC Overview" data-breadcrumb="Security Operations Center / Dashboard" data-status="All Systems Operational" data-soc-badge="true">
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card stat-card--danger soc-metric">
+        <div class="soc-metric__pulse"></div>
+        <div class="stat-card__label">Active Threats</div>
+        <div class="stat-card__value" style="color:var(--accent-red)" data-live-counter="23">23</div>
+        <div class="stat-card__change stat-card__change--down">↑ 4 in last hour</div>
+      </div>
+      <div class="stat-card stat-card--warning">
+        <div class="stat-card__label">Phishing Attempts</div>
+        <div class="stat-card__value" style="color:var(--accent-orange)" data-counter="156">0</div>
+        <div class="stat-card__change stat-card__change--down">Blocked today</div>
+      </div>
+      <div class="stat-card stat-card--danger">
+        <div class="stat-card__label">Unauthorized Logins</div>
+        <div class="stat-card__value" style="color:var(--accent-red)" data-counter="47">0</div>
+        <div class="stat-card__change stat-card__change--down">Last 24 hours</div>
+      </div>
+      <div class="stat-card stat-card--success">
+        <div class="stat-card__label">System Security Score</div>
+        <div class="stat-card__value" style="color:var(--accent-green)" data-counter="88">0</div>
+        <div class="stat-card__change stat-card__change--up">↑ 3% this week</div>
+      </div>
+    </div>
+
+    <div class="grid-2-1" style="margin-bottom:1.25rem">
+      <div class="panel critical-panel">
+        <div class="panel__header">
+          <span class="panel__title" style="color:var(--accent-red)">🚨 Critical Alerts</span>
+          <span class="badge badge-critical">5 Active</span>
+        </div>
+        <div class="panel__body panel__body--flush">
+          <div class="critical-alert">
+            <div class="critical-alert__icon">🔴</div>
+            <div class="critical-alert__content">
+              <div class="critical-alert__title">Ransomware Signature Detected — LAB-204</div>
+              <div class="critical-alert__desc">File quarantined. Endpoint isolated. Analyst assigned.</div>
+            </div>
+            <div class="alert-item__time">Just now</div>
+          </div>
+          <div class="critical-alert">
+            <div class="critical-alert__icon">🔴</div>
+            <div class="critical-alert__content">
+              <div class="critical-alert__title">Brute Force Attack — Admin Portal</div>
+              <div class="critical-alert__desc">847 login attempts from 12.34.56.78 blocked by WAF.</div>
+            </div>
+            <div class="alert-item__time">3m ago</div>
+          </div>
+          <div class="critical-alert">
+            <div class="critical-alert__icon">🟠</div>
+            <div class="critical-alert__content">
+              <div class="critical-alert__title">Credential Stuffing Campaign</div>
+              <div class="critical-alert__desc">23 accounts flagged. MFA prevented unauthorized access.</div>
+            </div>
+            <div class="alert-item__time">12m ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__header">
+          <span class="panel__title">📡 Live Event Feed</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="panel__body panel__body--flush">
+          <div class="live-feed" id="soc-live-feed"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.25rem">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">📈 Attack Trends (24h)</span></div>
+        <div class="panel__body">
+          <div class="chart-container"><canvas id="attackTrendChart"></canvas></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">🎯 Incident Types</span></div>
+        <div class="panel__body">
+          <div class="chart-container"><canvas id="incidentTypesChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">🦠 Malware Detection Logs</span></div>
+        <div class="panel__body panel__body--flush">
+          <table class="data-table">
+            <thead><tr><th>Time</th><th>Endpoint</th><th>Threat</th><th>Severity</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">14:32:08</td><td>LAB-204</td><td>Trojan.GenericKD</td><td><span class="badge badge-critical">Critical</span></td><td><span class="badge badge-safe">Quarantined</span></td></tr>
+              <tr><td class="mono">13:15:42</td><td>LIB-PC-12</td><td>Adware.Bundler</td><td><span class="badge badge-warning">High</span></td><td><span class="badge badge-safe">Removed</span></td></tr>
+              <tr><td class="mono">11:08:19</td><td>DM-A-305</td><td>Phishing.PDF</td><td><span class="badge badge-warning">High</span></td><td><span class="badge badge-safe">Blocked</span></td></tr>
+              <tr><td class="mono">09:44:55</td><td>ADMIN-WS-01</td><td>Exploit.CVE-2026</td><td><span class="badge badge-critical">Critical</span></td><td><span class="badge badge-info">Investigating</span></td></tr>
+              <tr><td class="mono">08:22:31</td><td>LAB-118</td><td>Keylogger.Win32</td><td><span class="badge badge-critical">Critical</span></td><td><span class="badge badge-safe">Neutralized</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel" style="margin-bottom:1.25rem">
+          <div class="panel__header"><span class="panel__title">🛡️ Security Posture</span></div>
+          <div class="panel__body">
+            <div class="posture-grid">
+              <div class="posture-item">
+                <div class="posture-item__score" style="color:var(--accent-green)">94%</div>
+                <div class="posture-item__label">MFA Coverage</div>
+              </div>
+              <div class="posture-item">
+                <div class="posture-item__score" style="color:var(--accent-blue)">99.2%</div>
+                <div class="posture-item__label">Patch Compliance</div>
+              </div>
+              <div class="posture-item">
+                <div class="posture-item__score" style="color:var(--accent-orange)">78%</div>
+                <div class="posture-item__label">Training Complete</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel__header"><span class="panel__title">📈 Security Score Trend</span></div>
+          <div class="panel__body">
+            <div class="chart-container chart-container--sm"><canvas id="securityPostureChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/live-feed.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      Charts.initAdminDashboard();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

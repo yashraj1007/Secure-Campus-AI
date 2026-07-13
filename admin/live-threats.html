@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Threat Monitor — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="Live Threat Monitor" data-breadcrumb="SOC / Real-Time Monitoring" data-status='<span data-live-counter="23">23</span> Active Threats' data-status-type="critical" data-soc-badge="true">
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card stat-card--danger"><div class="stat-card__label">Critical</div><div class="stat-card__value" style="color:var(--accent-red)" data-live-counter="5">5</div></div>
+      <div class="stat-card stat-card--warning"><div class="stat-card__label">High</div><div class="stat-card__value" style="color:var(--accent-orange)" data-live-counter="8">8</div></div>
+      <div class="stat-card"><div class="stat-card__label">Medium</div><div class="stat-card__value" style="color:var(--accent-yellow)" data-live-counter="10">10</div></div>
+      <div class="stat-card stat-card--success"><div class="stat-card__label">Mitigated (24h)</div><div class="stat-card__value" style="color:var(--accent-green)" data-counter="142">0</div></div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">📡 Real-Time Threat Stream</span><span class="status-dot"></span></div>
+        <div class="panel__body panel__body--flush">
+          <div class="live-feed" id="soc-live-feed" style="max-height:500px"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel critical-panel" style="margin-bottom:1.25rem">
+          <div class="panel__header"><span class="panel__title" style="color:var(--accent-red)">🔴 Active Threats</span></div>
+          <div class="panel__body panel__body--flush">
+            <div class="alert-item"><div class="alert-item__severity alert-item__severity--critical"></div><div class="alert-item__content"><div class="alert-item__title">Ransomware — LAB-204</div><div class="alert-item__desc">Endpoint isolated</div></div><div class="alert-item__time">Live</div></div>
+            <div class="alert-item"><div class="alert-item__severity alert-item__severity--critical"></div><div class="alert-item__content"><div class="alert-item__title">Brute Force — Admin Portal</div><div class="alert-item__desc">847 attempts blocked</div></div><div class="alert-item__time">Live</div></div>
+            <div class="alert-item"><div class="alert-item__severity alert-item__severity--high"></div><div class="alert-item__content"><div class="alert-item__title">Phishing Campaign</div><div class="alert-item__desc">Targeting faculty emails</div></div><div class="alert-item__time">Live</div></div>
+            <div class="alert-item"><div class="alert-item__severity alert-item__severity--high"></div><div class="alert-item__content"><div class="alert-item__title">Data Exfiltration Attempt</div><div class="alert-item__desc">192.168.45.112 → external</div></div><div class="alert-item__time">Live</div></div>
+            <div class="alert-item"><div class="alert-item__severity alert-item__severity--medium"></div><div class="alert-item__content"><div class="alert-item__title">Port Scan Detected</div><div class="alert-item__desc">DMZ perimeter</div></div><div class="alert-item__time">Live</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__header"><span class="panel__title">Severity Distribution</span></div>
+          <div class="panel__body">
+            <div style="display:flex;flex-direction:column;gap:0.75rem">
+              <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem"><span>Critical</span><span style="color:var(--accent-red)">22%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px"><div style="width:22%;height:100%;background:var(--accent-red);border-radius:3px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem"><span>High</span><span style="color:var(--accent-orange)">35%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px"><div style="width:35%;height:100%;background:var(--accent-orange);border-radius:3px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem"><span>Medium</span><span style="color:var(--accent-yellow)">28%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px"><div style="width:28%;height:100%;background:var(--accent-yellow);border-radius:3px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.25rem"><span>Low</span><span style="color:var(--accent-green)">15%</span></div><div style="height:6px;background:var(--bg-tertiary);border-radius:3px"><div style="width:15%;height:100%;background:var(--accent-green);border-radius:3px"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/live-feed.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+:root {
+  --bg-primary: #0B1220;
+  --bg-secondary: #131C2E;
+  --bg-tertiary: #1A2744;
+  --bg-glass: rgba(19, 28, 46, 0.72);
+  --bg-glass-hover: rgba(26, 39, 68, 0.85);
+
+  --accent-blue: #00BFFF;
+  --accent-green: #00FF99;
+  --accent-orange: #FFA500;
+  --accent-red: #FF4D4D;
+  --accent-yellow: #FFD700;
+
+  --text-primary: #E8EDF5;
+  --text-secondary: #8B9CB8;
+  --text-muted: #5A6A85;
+
+  --border-color: rgba(0, 191, 255, 0.15);
+  --border-glow: rgba(0, 191, 255, 0.35);
+
+  --shadow-glow-blue: 0 0 20px rgba(0, 191, 255, 0.25);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 153, 0.25);
+  --shadow-glow-red: 0 0 20px rgba(255, 77, 77, 0.35);
+  --shadow-glow-orange: 0 0 20px rgba(255, 165, 0, 0.3);
+
+  --font-primary: 'Inter', 'Roboto', 'Poppins', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  --sidebar-width: 260px;
+  --header-height: 64px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  --severity-safe: var(--accent-green);
+  --severity-medium: var(--accent-yellow);
+  --severity-warning: var(--accent-orange);
+  --severity-critical: var(--accent-red);
+}

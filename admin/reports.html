@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="Reports &amp; Analytics" data-breadcrumb="SOC / Analytics" data-topbar-extra='<button class="btn btn-primary btn-sm">📥 Export Report</button>'>
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card"><div class="stat-card__label">Total Incidents (YTD)</div><div class="stat-card__value" style="color:var(--accent-blue)" data-counter="487">0</div></div>
+      <div class="stat-card stat-card--success"><div class="stat-card__label">Resolution Rate</div><div class="stat-card__value" style="color:var(--accent-green)">96.2%</div></div>
+      <div class="stat-card"><div class="stat-card__label">Emails Analyzed</div><div class="stat-card__value" style="color:var(--accent-blue)" data-counter="52847">0</div></div>
+      <div class="stat-card stat-card--success"><div class="stat-card__label">Threats Blocked</div><div class="stat-card__value" style="color:var(--accent-green)" data-counter="1243">0</div></div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.25rem">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">📊 Monthly Incidents by Severity</span></div>
+        <div class="panel__body">
+          <div class="chart-container chart-container--lg"><canvas id="monthlyIncidentsChart"></canvas></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">🎯 Incident Status Distribution</span></div>
+        <div class="panel__body">
+          <div class="chart-container chart-container--lg"><canvas id="reportsPieChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel__header"><span class="panel__title">📋 Recent Reports</span></div>
+      <div class="panel__body panel__body--flush">
+        <table class="data-table">
+          <thead><tr><th>Report</th><th>Period</th><th>Generated</th><th>Type</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Monthly Security Posture Report</td><td>May 2026</td><td class="mono">Jun 1, 2026</td><td><span class="badge badge-info">Executive</span></td><td><button class="btn btn-sm btn-secondary">Download</button></td></tr>
+            <tr><td>Phishing Campaign Analysis</td><td>Q2 2026</td><td class="mono">May 28, 2026</td><td><span class="badge badge-warning">Threat Intel</span></td><td><button class="btn btn-sm btn-secondary">Download</button></td></tr>
+            <tr><td>User Awareness Training Progress</td><td>Spring 2026</td><td class="mono">May 15, 2026</td><td><span class="badge badge-safe">Training</span></td><td><button class="btn btn-sm btn-secondary">Download</button></td></tr>
+            <tr><td>Incident Response Metrics</td><td>Apr 2026</td><td class="mono">May 1, 2026</td><td><span class="badge badge-info">Operational</span></td><td><button class="btn btn-sm btn-secondary">Download</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/charts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      Charts.initReportsPage();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

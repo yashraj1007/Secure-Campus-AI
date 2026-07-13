@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attack Simulator — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Live Attack &amp; Defense Simulator" data-breadcrumb="Student Portal / Attack Simulation" data-topbar-extra='<span class="soc-badge">SOC SIMULATION</span>'>
+  <div data-page-content>
+    <div class="simulator-container">
+      <div class="glass-card" style="margin-bottom:1.5rem;text-align:center">
+        <h2 style="margin-bottom:0.5rem">Phishing Attack Lifecycle Simulation</h2>
+        <p style="color:var(--text-secondary);font-size:0.9rem">Watch a real-world phishing attack unfold and observe how the SOC system detects, responds, and neutralizes the threat.</p>
+      </div>
+      <div class="simulator-progress"><div class="simulator-progress__bar" id="sim-progress-bar"></div></div>
+      <div class="simulator-timeline" id="sim-timeline"></div>
+      <div class="simulator-controls">
+        <button class="btn btn-primary btn-lg" id="sim-start"><i data-lucide="play" style="width:16px;height:16px"></i> Run Simulation</button>
+        <button class="btn btn-secondary" id="sim-reset"><i data-lucide="rotate-ccw" style="width:16px;height:16px"></i> Reset</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/attack-simulator.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

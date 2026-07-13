@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awareness Game — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Cyber Awareness Game" data-breadcrumb="Student Portal / Training">
+  <div data-page-content>
+    <div class="game-header">
+      <div class="xp-bar">
+        <div class="xp-bar__label"><span id="xp-level">Level 7</span><span id="xp-label">1250 / 1500 XP</span></div>
+        <div class="xp-bar__track"><div class="xp-bar__fill" id="xp-fill" style="width:83%"></div></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-bottom:1.25rem">
+      <div class="panel__header"><span class="panel__title"><i data-lucide="award" style="width:16px;height:16px"></i> Your Badges</span></div>
+      <div class="panel__body"><div class="badges-grid" id="badges-grid"></div></div>
+    </div>
+    <div class="grid-2-1">
+      <div id="quiz-container"></div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="trophy" style="width:16px;height:16px"></i> Leaderboard</span></div>
+        <div class="panel__body panel__body--flush">
+          <table class="leaderboard-table">
+            <thead><tr><th>Rank</th><th>Player</th><th>XP</th><th>Level</th></tr></thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/awareness-game.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

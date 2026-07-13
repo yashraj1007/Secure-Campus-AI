@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Profile" data-breadcrumb="Student Portal / Profile">
+  <div data-page-content>
+    <div class="profile-header">
+      <div class="profile-avatar" data-user-avatar></div>
+      <div>
+        <h2 data-user-name></h2>
+        <p style="color:var(--text-secondary);font-size:0.9rem"><span data-user-role></span> · ID: <span data-user-id></span></p>
+        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.25rem" data-user-email></p>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="stat-card stat-card--success"><div class="stat-card__label">Security Score</div><div class="stat-card__value" style="color:var(--accent-green)">87</div></div>
+      <div class="stat-card"><div class="stat-card__label">Training Level</div><div class="stat-card__value" style="color:var(--accent-blue)">7</div></div>
+      <div class="stat-card"><div class="stat-card__label">Badges Earned</div><div class="stat-card__value" style="color:var(--accent-orange)">3</div></div>
+    </div>
+    <div class="grid-2" style="margin-top:1.25rem">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="user-cog" style="width:16px;height:16px"></i> Account Settings</span></div>
+        <div class="panel__body">
+          <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" data-user-name readonly></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" data-user-email readonly></div>
+          <div class="form-group"><label class="form-label">Student ID</label><input type="text" class="form-input" data-user-id readonly></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="shield" style="width:16px;height:16px"></i> Security Status</span></div>
+        <div class="panel__body">
+          <div class="checklist-item"><div class="checklist-icon checklist-icon--pass">✓</div><div><div style="font-weight:500">Multi-Factor Authentication</div><div style="font-size:0.8rem;color:var(--text-muted)">Enabled</div></div></div>
+          <div class="checklist-item"><div class="checklist-icon checklist-icon--warn">!</div><div><div style="font-weight:500">Password Age</div><div style="font-size:0.8rem;color:var(--text-muted)">90 days — update recommended</div></div></div>
+          <div class="checklist-item"><div class="checklist-icon checklist-icon--pass">✓</div><div><div style="font-weight:500">Security Training</div><div style="font-size:0.8rem;color:var(--text-muted)">78% complete</div></div></div>
+          <div class="checklist-item"><div class="checklist-icon checklist-icon--pass">✓</div><div><div style="font-weight:500">Email Scanner</div><div style="font-size:0.8rem;color:var(--text-muted)">Active — 142 scans</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) {
+        Auth.populateUserInfo(session);
+        document.querySelectorAll('[data-user-email]').forEach(el => { if (el.tagName !== 'INPUT') el.textContent = session.email; });
+        document.querySelectorAll('input[data-user-name]').forEach(el => el.value = session.name);
+        document.querySelectorAll('input[data-user-email]').forEach(el => el.value = session.email);
+        document.querySelectorAll('input[data-user-id]').forEach(el => el.value = session.id);
+      }
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

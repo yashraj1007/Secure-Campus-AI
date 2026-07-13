@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Settings — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="System Settings" data-breadcrumb="SOC / Configuration">
+  <div data-page-content>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">🔐 Security Policies</span></div>
+        <div class="panel__body">
+          <div class="form-group">
+            <label class="form-label">Password Minimum Length</label>
+            <input type="number" class="form-input" value="12">
+          </div>
+          <div class="form-group">
+            <label class="form-label">MFA Enforcement</label>
+            <select class="form-input">
+              <option>Required for all users</option>
+              <option>Required for admins only</option>
+              <option>Optional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Session Timeout (minutes)</label>
+            <input type="number" class="form-input" value="30">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Login Attempts</label>
+            <input type="number" class="form-input" value="5">
+          </div>
+          <button class="btn btn-primary">Save Policies</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">📡 Threat Detection</span></div>
+        <div class="panel__body">
+          <div class="checklist-item">
+            <div class="checklist-icon checklist-icon--pass">✓</div>
+            <div><div style="font-weight:500">Email Phishing Detection</div><div style="font-size:0.8rem;color:var(--text-muted)">AI-powered — Active</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon checklist-icon--pass">✓</div>
+            <div><div style="font-weight:500">Malware Scanning</div><div style="font-size:0.8rem;color:var(--text-muted)">Real-time endpoint protection</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon checklist-icon--pass">✓</div>
+            <div><div style="font-weight:500">Anomaly Detection</div><div style="font-size:0.8rem;color:var(--text-muted)">Behavioral analytics enabled</div></div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon checklist-icon--pass">✓</div>
+            <div><div style="font-weight:500">Threat Intelligence Feeds</div><div style="font-size:0.8rem;color:var(--text-muted)">Updated every 15 minutes</div></div>
+          </div>
+          <div class="form-group" style="margin-top:1rem">
+            <label class="form-label">Detection Sensitivity</label>
+            <select class="form-input">
+              <option>High (Recommended)</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">🔔 Alert Configuration</span></div>
+        <div class="panel__body">
+          <div class="form-group">
+            <label class="form-label">Critical Alert Channel</label>
+            <select class="form-input"><option>Email + SMS + SOC Dashboard</option><option>Email + SOC Dashboard</option><option>SOC Dashboard Only</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alert Email</label>
+            <input type="email" class="form-input" value="soc-alerts@campus.edu">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Escalation Timeout (minutes)</label>
+            <input type="number" class="form-input" value="15">
+          </div>
+          <button class="btn btn-primary">Save Alerts</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title">ℹ️ System Information</span></div>
+        <div class="panel__body">
+          <div class="checklist-item"><div style="flex:1"><div style="font-size:0.85rem;color:var(--text-secondary)">Platform Version</div><div style="font-family:var(--font-mono);font-size:0.9rem">SCAI v2.4.1</div></div></div>
+          <div class="checklist-item"><div style="flex:1"><div style="font-size:0.85rem;color:var(--text-secondary)">Last Updated</div><div style="font-family:var(--font-mono);font-size:0.9rem">2026-06-15 03:00 UTC</div></div></div>
+          <div class="checklist-item"><div style="flex:1"><div style="font-size:0.85rem;color:var(--text-secondary)">Threat DB Version</div><div style="font-family:var(--font-mono);font-size:0.9rem">TI-2026.06.22</div></div></div>
+          <div class="checklist-item"><div style="flex:1"><div style="font-size:0.85rem;color:var(--text-secondary)">License</div><div style="font-family:var(--font-mono);font-size:0.9rem">Enterprise — 15,000 seats</div></div></div>
+          <div class="checklist-item"><div style="flex:1"><div style="font-size:0.85rem;color:var(--text-secondary)">Uptime</div><div style="font-family:var(--font-mono);font-size:0.9rem;color:var(--accent-green)">99.97% (30 days)</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

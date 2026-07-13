@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Campus AI — Intelligent Cyber Defense Platform</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Secure Campus AI — Intelligent Cyber Defense & Awareness Platform for Educational Institutions">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="landing">
+    <div class="landing__bg">
+      <canvas id="network-canvas" class="landing__network"></canvas>
+      <div class="landing__gradient"></div>
+    </div>
+
+    <div class="landing__content">
+      <nav class="landing-nav">
+        <div class="landing-nav__brand">
+          <div class="landing-nav__logo">SC</div>
+          <span class="landing-nav__name">Secure Campus AI</span>
+        </div>
+        <div class="landing-nav__links">
+          <a href="#features" class="landing-nav__link">Features</a>
+          <a href="#stats" class="landing-nav__link">Platform</a>
+          <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="hero__badge animate-fade-in-up">
+          <span class="hero__badge-dot"></span>
+          Enterprise-Grade Cyber Defense
+        </div>
+        <h1 class="hero__title animate-fade-in-up stagger-1">Secure Campus AI</h1>
+        <p class="hero__subtitle animate-fade-in-up stagger-2">
+          Intelligent Cyber Defense &amp; Awareness Platform for Educational Institutions
+        </p>
+        <div class="hero__cta animate-fade-in-up stagger-3">
+          <a href="login.html#student" class="btn btn-success btn-lg"><i data-lucide="graduation-cap" style="width:18px;height:18px"></i> Login as Student</a>
+          <a href="login.html#admin" class="btn btn-admin btn-lg"><i data-lucide="shield" style="width:18px;height:18px"></i> Admin SOC Access</a>
+        </div>
+      </section>
+
+      <div class="stats-bar animate-fade-in-up stagger-4" id="stats">
+        <div class="stats-bar__item">
+          <div class="stats-bar__value">99.7%</div>
+          <div class="stats-bar__label">Threat Detection</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__value">50K+</div>
+          <div class="stats-bar__label">Emails Scanned</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__value">24/7</div>
+          <div class="stats-bar__label">SOC Monitoring</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__value">12K+</div>
+          <div class="stats-bar__label">Students Protected</div>
+        </div>
+      </div>
+
+      <section class="features" id="features">
+        <div class="features__header animate-fade-in-up">
+          <h2 class="features__title">Comprehensive Security Platform</h2>
+          <p class="features__desc">Enterprise-grade tools designed to protect educational institutions from evolving cyber threats.</p>
+        </div>
+        <div class="features__grid">
+          <div class="feature-card animate-fade-in-up stagger-1">
+            <div class="feature-card__icon feature-card__icon--blue">🎣</div>
+            <h3 class="feature-card__title">Phishing Detection</h3>
+            <p class="feature-card__desc">AI-powered email analysis with real-time threat scoring, link verification, and domain spoofing detection.</p>
+          </div>
+          <div class="feature-card animate-fade-in-up stagger-2">
+            <div class="feature-card__icon feature-card__icon--orange">⚠️</div>
+            <h3 class="feature-card__title">Scam Detection</h3>
+            <p class="feature-card__desc">Advanced placement scam and fraud detection with multi-indicator analysis and risk assessment.</p>
+          </div>
+          <div class="feature-card animate-fade-in-up stagger-3">
+            <div class="feature-card__icon feature-card__icon--green">🤖</div>
+            <h3 class="feature-card__title">AI Security Assistant</h3>
+            <p class="feature-card__desc">Intelligent chatbot providing instant security guidance, threat explanations, and best practices.</p>
+          </div>
+          <div class="feature-card animate-fade-in-up stagger-4">
+            <div class="feature-card__icon feature-card__icon--red">🗺️</div>
+            <h3 class="feature-card__title">Threat Intelligence Map</h3>
+            <p class="feature-card__desc">Real-time geographic threat visualization with severity-coded incident markers across campus.</p>
+          </div>
+          <div class="feature-card animate-fade-in-up stagger-5">
+            <div class="feature-card__icon feature-card__icon--blue">🎮</div>
+            <h3 class="feature-card__title">Awareness Training</h3>
+            <p class="feature-card__desc">Gamified cybersecurity education with quizzes, badges, XP progression, and leaderboards.</p>
+          </div>
+          <div class="feature-card animate-fade-in-up stagger-6">
+            <div class="feature-card__icon feature-card__icon--red">🛡️</div>
+            <h3 class="feature-card__title">SOC Command Center</h3>
+            <p class="feature-card__desc">Full Security Operations Center dashboard with live monitoring, incident management, and analytics.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="landing-footer">
+        <p>&copy; 2026 Secure Campus AI. Enterprise Cyber Defense for Education.</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/network-bg.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

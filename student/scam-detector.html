@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scam Detector — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Scam &amp; Placement Detector" data-breadcrumb="Student Portal / Scam Detector">
+  <div data-page-content>
+    <div class="grid-2-1">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="file-text" style="width:16px;height:16px"></i> Offer Details</span><button class="btn btn-sm btn-secondary" id="scam-sample">Load Scam Sample</button></div>
+        <div class="panel__body scam-form">
+          <div class="form-group"><label class="form-label" for="scam-company">Company Name</label><input type="text" id="scam-company" class="form-input" placeholder="e.g. TechGlobal Solutions Inc."></div>
+          <div class="form-group"><label class="form-label" for="scam-offer">Offer / Job Description</label><textarea id="scam-offer" class="form-input form-textarea" placeholder="Paste the job offer or placement details..."></textarea></div>
+          <div class="form-group"><label class="form-label" for="scam-email">Email / Message Content</label><textarea id="scam-email" class="form-input form-textarea" placeholder="Paste any related email or message content..."></textarea></div>
+          <button id="scam-detect-btn" class="btn btn-primary btn-block"><i data-lucide="scan" style="width:16px;height:16px"></i> Detect Scam</button>
+        </div>
+      </div>
+      <div id="scam-results">
+        <div class="scanner-empty" style="padding:4rem 2rem">
+          <div class="scanner-empty__icon"><i data-lucide="alert-triangle" style="width:48px;height:48px;opacity:0.3"></i></div>
+          <p>Enter offer details and click <strong>Detect Scam</strong> to analyze for fraud indicators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/scam-detector.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

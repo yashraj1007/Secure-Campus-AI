@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Secure Campus AI</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-page__bg">
+      <div class="auth-page__grid-bg"></div>
+      <div class="auth-page__glow auth-page__glow--blue"></div>
+      <div class="auth-page__glow auth-page__glow--green"></div>
+    </div>
+
+    <div class="auth-container">
+      <a href="index.html" class="auth-back">← Back to Home</a>
+
+      <div class="auth-header animate-fade-in-up">
+        <div class="auth-header__logo">SC</div>
+        <h1 class="auth-header__title">Secure Campus AI</h1>
+        <p class="auth-header__subtitle">Intelligent Cyber Defense &amp; Awareness Platform</p>
+      </div>
+
+      <!-- Step 1: Role Selection -->
+      <div id="role-selector" class="auth-step">
+        <p class="auth-step__label">Select your access portal</p>
+        <div class="role-options">
+          <button type="button" class="role-option role-option--student" data-select-role="student">
+            <div class="role-option__icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="role-option__content">
+              <h3 class="role-option__title">Student Portal</h3>
+              <p class="role-option__desc">Security dashboard, training &amp; AI assistant</p>
+            </div>
+            <span class="role-option__arrow">→</span>
+          </button>
+          <button type="button" class="role-option role-option--admin" data-select-role="admin">
+            <div class="role-option__icon"><i data-lucide="shield-check"></i></div>
+            <div class="role-option__content">
+              <h3 class="role-option__title">SOC Command Center</h3>
+              <p class="role-option__desc">Authorized analysts &amp; administrators only</p>
+            </div>
+            <span class="role-option__arrow">→</span>
+          </button>
+        </div>
+        <p class="auth-footer-note">All access is encrypted and monitored</p>
+      </div>
+
+      <!-- Step 2: Login Form (one at a time) -->
+      <div id="login-view" class="auth-step" hidden>
+        <button type="button" id="back-to-roles" class="auth-back auth-back--inline">← Change access portal</button>
+
+        <!-- Student Login -->
+        <div id="student-login-panel" class="auth-card auth-card--single auth-card--student" hidden>
+          <div class="auth-card__header">
+            <div class="auth-card__icon"><i data-lucide="graduation-cap"></i></div>
+            <div>
+              <h2 class="auth-card__title">Student Sign In</h2>
+              <p class="auth-card__subtitle">Access your security learning portal</p>
+            </div>
+          </div>
+
+          <div id="student-error" class="auth-error"></div>
+
+          <form id="student-login-form">
+            <div class="form-group">
+              <label class="form-label" for="student-email">Email Address</label>
+              <input type="email" id="student-email" class="form-input" placeholder="student@campus.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="student-password">Password</label>
+              <input type="password" id="student-password" class="form-input" placeholder="Enter your password" required>
+            </div>
+            <div class="auth-form__actions">
+              <a href="#" class="auth-card__forgot">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Sign In</button>
+          </form>
+        </div>
+
+        <!-- Admin Login -->
+        <div id="admin-login-panel" class="auth-card auth-card--single auth-card--admin" hidden>
+          <div class="auth-card__header">
+            <div class="auth-card__icon"><i data-lucide="shield-check"></i></div>
+            <div>
+              <h2 class="auth-card__title">SOC Access Panel</h2>
+              <p class="auth-card__subtitle">Security Operations Center</p>
+            </div>
+          </div>
+          <div class="auth-card__badge">
+            <span class="auth-card__badge-dot"></span>
+            Secure Access Only — Monitored Session
+          </div>
+
+          <div id="admin-error" class="auth-error"></div>
+
+          <form id="admin-login-form">
+            <div class="form-group">
+              <label class="form-label" for="admin-email">Admin Email</label>
+              <input type="email" id="admin-email" class="form-input" placeholder="admin@soc.campus.edu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="admin-password">Password</label>
+              <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required>
+            </div>
+            <button type="submit" class="btn btn-admin btn-block">Authenticate &amp; Access SOC</button>
+          </form>
+        </div>
+
+        <p class="auth-demo-hint" id="demo-hint"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

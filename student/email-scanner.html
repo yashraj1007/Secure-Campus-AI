@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Analysis — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Email Phishing Detector" data-breadcrumb="Student Portal / Email Analysis" data-status="Online">
+  <div data-page-content>
+    <div class="scanner-layout">
+      <div class="scanner-input-panel">
+        <div class="panel" style="flex:1;display:flex;flex-direction:column">
+          <div class="panel__header">
+            <span class="panel__title"><i data-lucide="mail" style="width:16px;height:16px"></i> Email Content Analysis</span>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+
+   <input
+    type="file"
+    id="email-file"
+    accept=".txt,.eml"
+    hidden
+>
+
+    <button
+    class="btn btn-sm btn-primary"
+    id="upload-email">
+
+    📁 Upload .eml/.txt File 
+
+  </button>
+
+    <button
+        class="btn btn-sm btn-secondary"
+        id="sample-safe">
+
+        Safe Sample
+
+    </button>
+
+    <button
+        class="btn btn-sm btn-danger"
+        id="sample-phishing">
+
+        Phishing Sample
+
+    </button>
+
+</div>
+          </div>
+          <div class="panel__body" style="flex:1;display:flex;flex-direction:column">
+            <textarea id="email-content" class="form-input form-textarea scanner-overlay" style="flex:1;min-height:300px;font-family:var(--font-mono);font-size:0.85rem" placeholder="Paste email content here for analysis..."></textarea>
+            <button id="scan-btn" class="btn btn-primary btn-block" style="margin-top:1rem"><i data-lucide="scan" style="width:16px;height:16px"></i> Analyze Email</button>
+          </div>
+        </div>
+      </div>
+      <div class="scanner-results-panel" id="scan-results">
+        <div class="panel" style="flex:1;display:flex;flex-direction:column">
+          <div class="panel__header"><span class="panel__title"><i data-lucide="microscope" style="width:16px;height:16px"></i> Analysis Results</span><span class="badge badge-info">AI-Powered</span></div>
+          <div class="panel__body" style="flex:1">
+            <div id="scan-empty" class="scanner-empty">
+              <div class="scanner-empty__icon"><i data-lucide="search" style="width:48px;height:48px;opacity:0.3"></i></div>
+              <p>Paste an email and click <strong>Analyze Email</strong> to begin threat detection.</p>
+            </div>
+            <div id="scan-results-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/email-scanner.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

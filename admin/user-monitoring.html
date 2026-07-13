@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Monitoring — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="admin" data-title="User Monitoring" data-breadcrumb="SOC / User Activity" data-status="12,847 Users Monitored">
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card"><div class="stat-card__label">Active Sessions</div><div class="stat-card__value" style="color:var(--accent-blue)" data-live-counter="3842">3842</div></div>
+      <div class="stat-card stat-card--warning"><div class="stat-card__label">Flagged Users</div><div class="stat-card__value" style="color:var(--accent-orange)">23</div></div>
+      <div class="stat-card stat-card--danger"><div class="stat-card__label">Locked Accounts</div><div class="stat-card__value" style="color:var(--accent-red)">7</div></div>
+      <div class="stat-card stat-card--success"><div class="stat-card__label">MFA Enabled</div><div class="stat-card__value" style="color:var(--accent-green)">94%</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel__header">
+        <span class="panel__title">👥 User Activity Monitor</span>
+        <input type="text" class="form-input" style="width:250px;padding:0.5rem 0.75rem;font-size:0.8rem" placeholder="Search users...">
+      </div>
+      <div class="panel__body panel__body--flush">
+        <table class="data-table">
+          <thead><tr><th>User ID</th><th>Name</th><th>Last Activity</th><th>Risk Score</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">STU-0847</td><td>Alex Chen</td><td class="mono">14:28:33</td><td><span class="badge badge-danger">High — 78</span></td><td><span class="badge badge-warning">Flagged</span></td><td><button class="btn btn-sm btn-secondary">View</button></td></tr>
+            <tr><td class="mono">STU-1203</td><td>Jordan Lee</td><td class="mono">14:30:12</td><td><span class="badge badge-safe">Low — 12</span></td><td><span class="badge badge-safe">Normal</span></td><td><button class="btn btn-sm btn-secondary">View</button></td></tr>
+            <tr><td class="mono">STU-0456</td><td>Sam Rivera</td><td class="mono">14:15:08</td><td><span class="badge badge-warning">Medium — 45</span></td><td><span class="badge badge-info">Monitoring</span></td><td><button class="btn btn-sm btn-secondary">View</button></td></tr>
+            <tr><td class="mono">FAC-0089</td><td>Dr. Williams</td><td class="mono">13:55:44</td><td><span class="badge badge-danger">High — 82</span></td><td><span class="badge badge-critical">Targeted</span></td><td><button class="btn btn-sm btn-danger">Alert</button></td></tr>
+            <tr><td class="mono">STU-2190</td><td>Casey Kim</td><td class="mono">14:31:55</td><td><span class="badge badge-safe">Low — 8</span></td><td><span class="badge badge-safe">Normal</span></td><td><button class="btn btn-sm btn-secondary">View</button></td></tr>
+            <tr><td class="mono">STU-1678</td><td>Morgan Davis</td><td class="mono">12:40:22</td><td><span class="badge badge-critical">Critical — 94</span></td><td><span class="badge badge-danger">Locked</span></td><td><button class="btn btn-sm btn-danger">Review</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/live-feed.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('admin');
+      if (session) Auth.populateUserInfo(session);
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

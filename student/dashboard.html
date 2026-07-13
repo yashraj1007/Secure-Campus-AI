@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Secure Campus AI</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Student security dashboard — Secure Campus AI">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/student.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-app="student" data-title="Security Dashboard" data-breadcrumb="Student Portal / Overview" data-status="Protected">
+  <div data-page-content>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="stat-card stat-card--success">
+        <div class="stat-card__label">Security Score</div>
+        <div class="stat-card__value" style="color:var(--accent-green)" data-counter="87">0</div>
+        <div class="stat-card__change stat-card__change--up">↑ 5% this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Emails Scanned</div>
+        <div class="stat-card__value" style="color:var(--accent-blue)" data-counter="142">0</div>
+        <div class="stat-card__change stat-card__change--up">↑ 12 today</div>
+      </div>
+      <div class="stat-card stat-card--warning">
+        <div class="stat-card__label">Threats Detected</div>
+        <div class="stat-card__value" style="color:var(--accent-orange)" data-counter="8">0</div>
+        <div class="stat-card__change stat-card__change--down">↓ 3 from last week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Awareness Level</div>
+        <div class="stat-card__value" style="color:var(--accent-blue)">Lv. <span data-counter="7">0</span></div>
+        <div class="stat-card__change stat-card__change--up">1,250 XP</div>
+      </div>
+    </div>
+    <div class="grid-2-1" style="margin-bottom:1.25rem">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="trending-up" style="width:16px;height:16px"></i> Weekly Security Activity</span></div>
+        <div class="panel__body"><div class="chart-container"><canvas id="weeklyActivityChart"></canvas></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="pie-chart" style="width:16px;height:16px"></i> Threat Categories</span></div>
+        <div class="panel__body"><div class="chart-container"><canvas id="threatCategoriesChart"></canvas></div></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="bell" style="width:16px;height:16px"></i> Recent Alerts</span><span class="badge badge-danger">3 New</span></div>
+        <div class="panel__body panel__body--flush">
+          <div class="alert-item"><div class="alert-item__severity alert-item__severity--high"></div><div class="alert-item__content"><div class="alert-item__title">Phishing Email Detected</div><div class="alert-item__desc">Suspicious email from campus-login.xyz blocked</div></div><div class="alert-item__time">2m ago</div></div>
+          <div class="alert-item"><div class="alert-item__severity alert-item__severity--medium"></div><div class="alert-item__content"><div class="alert-item__title">Weak Password Warning</div><div class="alert-item__desc">Portal password hasn't been changed in 90 days</div></div><div class="alert-item__time">1h ago</div></div>
+          <div class="alert-item"><div class="alert-item__severity alert-item__severity--low"></div><div class="alert-item__content"><div class="alert-item__title">Training Module Available</div><div class="alert-item__desc">New "Social Engineering" quiz unlocked</div></div><div class="alert-item__time">3h ago</div></div>
+          <div class="alert-item"><div class="alert-item__severity alert-item__severity--high"></div><div class="alert-item__content"><div class="alert-item__title">Scam Offer Flagged</div><div class="alert-item__desc">Fake job placement offer detected in inbox</div></div><div class="alert-item__time">5h ago</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel__header"><span class="panel__title"><i data-lucide="lightbulb" style="width:16px;height:16px"></i> Security Recommendations</span></div>
+        <div class="panel__body">
+          <div class="recommendation-item"><div class="recommendation-item__icon"><i data-lucide="shield-check" style="width:16px;height:16px"></i></div><div class="recommendation-item__text">Enable Multi-Factor Authentication on your campus account for enhanced protection.</div></div>
+          <div class="recommendation-item"><div class="recommendation-item__icon"><i data-lucide="gamepad-2" style="width:16px;height:16px"></i></div><div class="recommendation-item__text">Complete the "Phishing Awareness" quiz to earn 50 XP and the Phishing Hunter badge.</div></div>
+          <div class="recommendation-item"><div class="recommendation-item__icon"><i data-lucide="mail" style="width:16px;height:16px"></i></div><div class="recommendation-item__text">Scan suspicious emails before clicking any links using the Email Scanner tool.</div></div>
+          <div class="recommendation-item"><div class="recommendation-item__icon"><i data-lucide="refresh-cw" style="width:16px;height:16px"></i></div><div class="recommendation-item__text">Update your portal password — last changed 90 days ago.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/charts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = Auth.requireAuth('student');
+      if (session) Auth.populateUserInfo(session);
+      Charts.initStudentDashboard();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

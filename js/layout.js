@@ -6,6 +6,8 @@ const Layout = {
     { href: 'dashboard.html', icon: 'layout-dashboard', label: 'Dashboard' },
     { href: 'email-scanner.html', icon: 'mail', label: 'Email Scanner' },
     { href: 'scam-detector.html', icon: 'alert-triangle', label: 'Scam Detector' },
+    { href: 'digital-identity.html', icon: 'alert-triangle', label: 'Digital Identity' },
+    { href: 'opportunity-checker.html', icon: 'alert-triangle', label: 'Opportunity Checker' },
     { href: 'ai-assistant.html', icon: 'bot', label: 'AI Assistant' },
     { href: 'awareness-game.html', icon: 'gamepad-2', label: 'Awareness Game' },
     { href: 'attack-simulator.html', icon: 'zap', label: 'Attack Simulator' },

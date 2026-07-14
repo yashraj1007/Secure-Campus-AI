@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Digital Identity Protection</title>
+
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/student.css">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+
+.identity-container{
+
+max-width:1200px;
+margin:auto;
+padding:35px;
+
+}
+
+.identity-header{
+
+margin-bottom:30px;
+
+}
+
+.identity-header h1{
+
+font-size:34px;
+margin-bottom:8px;
+
+}
+
+.identity-header p{
+
+opacity:.8;
+
+}
+
+.identity-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:25px;
+
+}
+
+.card{
+
+background:#141d2f;
+
+border-radius:15px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.card h2{
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-top:18px;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+input{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:10px;
+
+background:#0f1728;
+
+color:white;
+
+}
+
+button{
+
+margin-top:20px;
+
+padding:14px 24px;
+
+border:none;
+
+border-radius:10px;
+
+background:#00d8ff;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+opacity:.9;
+
+}
+
+.checkbox{
+
+margin-top:15px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.checkbox input{
+
+width:18px;
+
+height:18px;
+
+}
+
+.result-card{
+
+margin-top:30px;
+
+background:#141d2f;
+
+padding:30px;
+
+border-radius:15px;
+
+}
+
+.progress{
+
+width:100%;
+
+height:16px;
+
+background:#2d3648;
+
+border-radius:50px;
+
+overflow:hidden;
+
+margin:15px 0;
+
+}
+
+.progress-bar{
+
+height:100%;
+
+width:0%;
+
+background:#00ff99;
+
+transition:.5s;
+
+}
+
+#tips li{
+
+margin-bottom:10px;
+
+}
+
+</style>
+
+</head>
+
+<body
+data-app="student"
+data-title="Digital Identity Protection"
+data-breadcrumb="Student Portal / Digital Identity Protection"
+data-status="Protected">
+
+<div data-page-content>
+
+<div class="identity-container">
+
+<div class="identity-header">
+
+<h1>🛡 Digital Identity Protection</h1>
+
+<p>
+Analyze password strength, privacy score and receive AI recommendations.
+</p>
+
+</div>
+
+<div class="identity-grid">
+
+<div class="card">
+
+<h2>Password Strength Checker</h2>
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter password">
+
+<label>Confirm Password</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm password">
+
+<button onclick="checkPassword()">
+
+Analyze Password
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Privacy Settings</h2>
+
+<div class="checkbox">
+
+<input type="checkbox" id="instagram">
+
+<label for="instagram">
+
+Instagram Public
+
+</label>
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox" id="linkedin">
+
+<label for="linkedin">
+
+LinkedIn Public
+
+</label>
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox" id="github">
+
+<label for="github">
+
+GitHub Public
+
+</label>
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox" id="same">
+
+<label for="same">
+
+Using Same Password Everywhere
+
+</label>
+
+</div>
+
+<div class="checkbox">
+
+<input type="checkbox" id="mfa">
+
+<label for="mfa">
+
+Multi-Factor Authentication Enabled
+
+</label>
+
+</div>
+
+<button onclick="checkPrivacy()">
+
+Analyze Privacy
+
+</button>
+
+</div>
+
+</div>
+
+<div class="result-card">
+
+<h2>Analysis Result</h2>
+
+<h3>Password Strength</h3>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="strengthBar">
+
+</div>
+
+</div>
+
+<h3 id="strengthText">
+
+Waiting...
+
+</h3>
+
+<br>
+
+<h3>
+
+Privacy Score
+
+</h3>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="privacyBar">
+
+</div>
+
+</div>
+
+<h3 id="privacyText">
+
+Waiting...
+
+</h3>
+
+<br>
+
+<h3>
+
+Recommendations
+
+</h3>
+
+<ul id="tips">
+
+<li>No analysis yet.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/auth.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/layout.js"></script>
+<script src="../js/digital_identity.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const session = Auth.requireAuth("student");
+
+    if(session){
+        Auth.populateUserInfo(session);
+    }
+
+    lucide.createIcons();
+
+});
+</script>
+
+</body>
+</html>
